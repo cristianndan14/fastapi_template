@@ -1,0 +1,24 @@
+[project]
+name = "fastapi_uv_project"
+version = "0.2.0"
+description = "Plantilla FastAPI extendida con MySQL, Alembic y configuración robusta"
+requires-python = ">=3.10"
+
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "sqlalchemy[asyncio]>=2.0",
+    "pymysql",
+    "pydantic-settings"
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+    "alembic"
+]
