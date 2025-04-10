@@ -10,15 +10,18 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Instala `uv`
+RUN pip install uv
 
+# Copia los archivos del proyecto
 COPY pyproject.toml .
 COPY app ./app
 
-# Instala uv y las dependencias del proyecto
-RUN pip install uv && uv pip install --system -r pyproject.toml
+# Instala dependencias incluyendo el grupo "dev"
+RUN pip install uv && uv pip install --system -r pyproject.toml --extra dev
 
-# Expone el puerto para producción
+# Expone el puerto para desarrollo
 EXPOSE 8000
 
 # Comando de inicio
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

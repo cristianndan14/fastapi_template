@@ -1,8 +1,9 @@
-version: "3.8"
-
 services:
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: fastapi-dev
     volumes:
       - .:/app
     ports:
@@ -20,7 +21,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "33066:3306"
     volumes:
       - db_data:/var/lib/mysql
 

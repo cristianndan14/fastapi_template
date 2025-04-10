@@ -9,7 +9,10 @@ dependencies = [
     "uvicorn[standard]>=0.27",
     "sqlalchemy[asyncio]>=2.0",
     "pymysql",
-    "pydantic-settings"
+    "aiomysql>=0.2.0",
+    "pydantic-settings",
+    "cryptography",
+    "alembic"
 ]
 
 [project.optional-dependencies]
@@ -20,5 +23,4 @@ dev = [
     "pytest-cov",
     "ruff",
     "mypy",
-    "alembic"
 ]
