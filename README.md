@@ -40,16 +40,19 @@ fastapi_uv_project/
 ├── alembic/                 # Migraciones de base de datos
 ├── pyproject.toml           # Dependencias del proyecto
 ├── Dockerfile               # Imagen Docker lista para producción
-├── docker-compose.yml       # Base de datos + API
-├── Makefile                 # Comandos útiles para desarrollo
+├── Dockerfile.dev           # Imagen Docker lista para desarrollo
+├── docker-compose-dev.yml   # Base de datos + API para desarrollo
+├── Makefile                 # Comandos útiles para desarrollo (linux)
 ├── .env                     # Variables de entorno
+├── .env.example             # Ejemplo de variables de entorno
 ├── .gitignore
+├── .dockerignore
 └── README.md
 ```
 
 ---
 
-## ⚙️ Uso rápido
+## ⚙️ Uso rápido localmente
 
 ### 1. Crear entorno virtual con `uv`
 
@@ -57,16 +60,36 @@ fastapi_uv_project/
 uv venv
 ```
 
-### 2. Instalar dependencias
+### 2. Activar entorno virtual Windows (cmd)
+
+```bash
+source venv\Scripts\activate
+```
+
+### 2.1 Activar entorno virtual Linux
+
+```bash
+source venv/bin/activate
+```
+
+### 3. Instalar dependencias
 
 ```bash
 uv pip install -r pyproject.toml --extra dev
 ```
 
-### 3. Levantar el entorno completo con Docker
+## 🐳 Uso con Docker
+
+### Levantar el stack completo (API + MySQL)
 
 ```bash
 make dev
+```
+
+o
+
+```bash
+docker-compose -f docker-compose-dev.yml up
 ```
 
 Visita: [http://localhost:8000/docs](http://localhost:8000/docs)
@@ -81,14 +104,6 @@ Visita: [http://localhost:8000/docs](http://localhost:8000/docs)
 - Verificación de tipos: `make typecheck`
 
 ---
-
-## 🐳 Uso con Docker
-
-### Levantar el stack completo (API + MySQL)
-
-```bash
-make dev
-```
 
 ### Migraciones con Alembic
 
